@@ -1,6 +1,8 @@
 pipeline {
 
-agent any
+agent {
+        label "bulid_node"
+    }
 
 stages {
 
@@ -29,7 +31,7 @@ stage ('Push to docker hub') {
 		stage ('Launching the server in Dev Env') {
             steps {
                 sh 'sudo docker rm -f Web_App'
-                sh "sudo docker run -d -p 82:80 --name Web_App rehan797/new_web:${BUILD_NUMBER} "
+                sh "sudo docker run -d -p 80:80 --name Web_App rehan797/new_web:${BUILD_NUMBER} "
             }
 
         } 
